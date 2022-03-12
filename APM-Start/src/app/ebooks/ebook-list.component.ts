@@ -16,6 +16,8 @@ export class EbookListComponent implements OnInit, OnDestroy {
   imageWidth: number = 50;
   imageMargin: number = 2;
 
+  _currentFolder:string= "eLib"; 
+
   // Prop to keep the state after an event 
   showImage: boolean = true;
   // error handling
@@ -42,12 +44,22 @@ export class EbookListComponent implements OnInit, OnDestroy {
 
   get listFilter(): string {
     return this._listFilter;
-  }
+  };
 
   set listFilter(value: string) {
     this._listFilter = value;
     console.log('in setter: ', value)
     this.filteredEbooks = this.performFilter(value);
+  }; 
+
+  get currentFolder(): string {
+    return this._currentFolder;
+  }
+
+  set currentFolder(value: string) {
+    this._currentFolder = value;
+    console.log('in folder: ', value)
+    //this.filteredProducts = this.performFilter(value);
   }
 
   performFilter(filterBy: string): IEbook[] {
@@ -56,6 +68,10 @@ export class EbookListComponent implements OnInit, OnDestroy {
       ebook.title.toLocaleLowerCase().includes(filterBy) ||
       ebook.author.toLocaleLowerCase().includes(filterBy));
   }
+
+  // updateFolder(folder: string): IEbook[] {
+    
+  // }
 
   // Method Demo
   toggleImage(): void {
@@ -79,7 +95,11 @@ export class EbookListComponent implements OnInit, OnDestroy {
       //next: products => this.products = this.filteredEbooks = products, /// Alt !!
       next: ebooks => {
         this.ebooks = ebooks;
-        this.ebooklist = this.ebooks.files;
+        this.ebooklist = this.ebooks;
+        // let idx:number = 1;
+        // this.ebooklist.forEach(function (elt){
+        //   elt.ebookId = idx++; 
+        // })
         this.filteredEbooks = this.ebooklist;
       },
       error: err => this.errorMessage = err

@@ -20,6 +20,9 @@ import { Component } from '@angular/core';
 
     <div  class="row">
       <router-outlet></router-outlet>
+      
+      
+
     </div> 
 
   </div> 

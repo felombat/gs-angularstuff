@@ -13,6 +13,7 @@ import { ProductDetailComponent } from './products/product-detail.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { PageNotFoundComponent } from './shared/page-not-found.component';
 import { RouterModule } from '@angular/router';
+import { EbookDetailComponent } from './ebooks/ebook-detail.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     AppComponent,
     ProductListComponent,
     EbookListComponent,
+    EbookDetailComponent,
     WelcomeComponent,
     ConvertToSpacesPipe,
     StarComponent,
@@ -34,6 +36,7 @@ import { RouterModule } from '@angular/router';
       { path: 'products',   component:  ProductListComponent},
       { path: 'products/:id',   component:  ProductDetailComponent},
       { path: 'ebooks',   component:  EbookListComponent},
+      { path: 'ebooks/:id',   component:  EbookDetailComponent},
       { path: 'welcome',   component:  WelcomeComponent},
       { path: '', redirectTo: 'welcome',   pathMatch:  'full'},
       { path: '**',   component:  PageNotFoundComponent}

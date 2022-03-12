@@ -1,5 +1,5 @@
 export interface IEbook {
-  //ebookId: number;
+  ebookId: number;
   
   basename: string;
   //ebookCode: string;

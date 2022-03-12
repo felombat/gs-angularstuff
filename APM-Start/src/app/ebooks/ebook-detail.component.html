@@ -1,0 +1,54 @@
+
+
+<div class='card'>
+  <div class='card-header'>
+    {{pageTitle + ': ' + ebook?.title || ebook?.basename}}
+  </div>
+
+  <div class='card-body'
+       *ngIf='ebook'>
+    <div class='row'>
+      <div class='col-md-8'>
+        <div class='row'>
+          <div class='col-md-4'>Title:</div>
+          <div class='col-md-8'> <a [href]="ebook.fileUrl"> {{ebook.title | convertToSpaces : '_' }} </a> </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4'>Author:</div>
+          <div class='col-md-8'>{{ebook.author  | convertToSpaces : '_'}}</div>
+        </div>
+        <!-- <div class='row'>
+          <div class='col-md-4'>Description:</div>
+          <div class='col-md-8'>{{ebook.basename}}</div>
+        </div> -->
+        <div class='row'>
+          <div class='col-md-4'>Size:</div>
+          <div class='col-md-8'>{{ebook?.filesize}}</div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4'>ext:</div>
+          <div class='col-md-8'>{{ebook?.extension }}</div>
+        </div>
+         
+      </div>
+
+      <div class='col-md-4'>
+        <img class='center-block img-responsive img-fluid' 
+        onError="this.src='../../assets/images/pdf02.png'"  
+
+             [style.width.px]='250'
+             [style.margin.px]='2'
+             [src]='ebook.imgUrl'
+             [title]='ebook.title'>
+      </div>
+    </div>
+  </div>
+
+  <div class='card-footer'>
+    <button class='btn btn-outline-secondary'
+            style='width:80px'
+            (click)='onBack()'>
+      <i class='fa fa-chevron-left'></i> Back
+    </button>
+  </div>
+</div>

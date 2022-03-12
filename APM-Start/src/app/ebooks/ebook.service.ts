@@ -10,18 +10,37 @@ import { IEbook } from './ebook';
 })
 export class EbookService {
   // props
-  private ebookUrl = 'api/ebooks/ebooks-eLib.json';
+  // 'api/ebooks/ebooks-eLib.json';
+  private ebookUrl = 'http://fueldemoapp.test/api/ebooklib/ebooks'; 
 
+  
   // Constructor -- inject external/internal Modules
   constructor(private http: HttpClient) { }
 
   //Service call : pull ebooks from server
-  getEbooks(): Observable<IEbook[]> {
-    return this.http.get<IEbook[]>(this.ebookUrl)
+  getEbooks(folder:string = 'new'): Observable<IEbook[]> {
+    let _folder = folder || 'new'; 
+     return this.http.get<IEbook[]>(this.ebookUrl + '?folder='+_folder)
       .pipe(
         tap(data => console.log('Ebooks: ', JSON.stringify(data))),
         catchError(this.handleError)
       )
+  }
+
+  // Get one product
+  // Since we are working with a json file, we can only retrieve all products
+  // So retrieve all products and then find the one we want using 'map'
+  getEbook(id: number): Observable<any | undefined> {
+    let books:any = {}; //{"files" : [], "folder" :''};
+    return this.getEbooks()
+      .pipe(
+        // tap({
+        //   next: (data) => books = data.,
+        //   error: (error) => this.handleError( error) 
+        //   }),
+            map((books) => books.find(p => p.ebookId === id) )
+            
+          );
   }
 
   // Error handle
